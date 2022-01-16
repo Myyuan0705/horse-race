@@ -1,0 +1,44 @@
+#引用注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8990/eureka/
+  instance:
+    prefer-ip-address: true
+#服务端口号
+server:
+  port: 8991
+
+spring:
+  #升级 boot 2.0 后返回日期类型指定为时间戳，实体中jsonFormat自由设置格式
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  application:
+    name: horse-main  #该模块的名字
+    #文件上传设置大小限制
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/horse?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+config:
+  root-url: /horse_main/api/v1/
+  contract: '0xca07cd5df8dcbdc6a55305e80573f1cdb90acacd'
+  transactionUrl: 'https://api-testnet.snowtrace.io/api?module=account&action=tokennfttx&contractaddress=%s&address=%s&page=1&offset=100&sort=asc'
+
+
